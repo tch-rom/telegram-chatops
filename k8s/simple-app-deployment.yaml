@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-dimple
+  labels:
+    app: simple-dimple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-dimple
+  template:
+    metadata:
+      labels:
+        app: simple-dimple
+    spec:
+      containers:
+        - name: simple-dimple
+          image: "registry.digitalocean.com/simple-dimple-reg/simple-dimple:latest"
+          imagePullPolicy: "Always"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: dimple-secret
