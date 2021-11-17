@@ -17,7 +17,7 @@ spec:
       containers:
         - name: simple-dimple
           image: "registry.digitalocean.com/simple-dimple-reg/simple-dimple:latest"
-          imagePullPolicy: "Always"
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 100m

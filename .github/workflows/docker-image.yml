@@ -15,6 +15,10 @@ jobs:
       packages: write
 
     steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -31,4 +35,4 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: ${{ env.REGISTRY }}/simple-dimple:latest
+        tags: ${{ env.REGISTRY }}/simple-dimple:${{ steps.date.outputs.date }}
