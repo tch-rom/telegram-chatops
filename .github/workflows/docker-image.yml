@@ -15,10 +15,6 @@ jobs:
       packages: write
 
     steps:
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
-
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -35,4 +31,13 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: ${{ env.REGISTRY }}/simple-dimple:${{ steps.date.outputs.date }}
+        tags: ${{ env.REGISTRY }}/simple-dimple:latest
+
+    - name: Set up kubectl
+      uses: matootie/dokube@v1.3.4
+      with:
+        personalAccessToken: ${{ secrets.DO_TOKEN }}
+        clusterName: k8s-for-simple-dimple
+
+    - name: New rollout
+      run: kubectl rollout restart deployment/simple-dimple
