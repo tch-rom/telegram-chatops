@@ -10,7 +10,7 @@ resource "digitalocean_kubernetes_cluster" "kubernetes_cluster" {
     name       = "default-pool"
     size       = "s-1vcpu-2gb"
     auto_scale = false
-    node_count = 2
+    node_count = 1
     tags       = ["default-pool"]
     labels = {
       "simple-dimple" = "up"
@@ -19,20 +19,18 @@ resource "digitalocean_kubernetes_cluster" "kubernetes_cluster" {
 
 }
 
-//# Another node pool for applications
-//resource "digitalocean_kubernetes_node_pool" "app_node_pool" {
-//  cluster_id = digitalocean_kubernetes_cluster.kubernetes_cluster.id
-//
-//  name = "app-pool"
-//  size = "s-2vcpu-4gb" # bigger instances
-//  tags = ["applications"]
-//
-//  # you can setup autoscaling
-//  auto_scale = true
-//  min_nodes  = 2
-//  max_nodes  = 5
-//  labels = {
-//    service  = "apps"
-//    priority = "high"
-//  }
-//}
+# Another node pool for applications
+resource "digitalocean_kubernetes_node_pool" "app_node_pool" {
+  cluster_id = digitalocean_kubernetes_cluster.kubernetes_cluster.id
+
+  name = "simple-app-pool"
+  size = "s-1vcpu-2gb"
+  tags = ["applications"]
+
+  auto_scale = true
+  min_nodes  = 1
+  max_nodes  = 1
+  labels = {
+    service  = "simple-dimple-app"
+  }
+}
