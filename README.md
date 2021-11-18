@@ -7,10 +7,12 @@ Codebase of the app, its infra, and chat-bot which triggers the deployment
 
 ![my-infra](images/infra.jpg)
 
-So, it is very simple. After making ``/deploy`` command - telegram-bot sends POST request to the GitHUB actions
+Simple-dimple app is just a small web-server which gives you the time when application was deployed.
+So, it is very simple. My bot is sitting as a docker container on the DigitalOcean. 
+After making ``/deploy`` command - telegram-bot sends POST request to the GitHUB actions
 which runs new workflow. It builds and pushes new image to the container registry.
 
-After new image appears in the Container registry the rollout happens.
+After new image appears in the Container registry the rollout on the K8s happens.
 
 # Technologies - reasons:
 
