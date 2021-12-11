@@ -25,3 +25,23 @@ After new image appears in the Container registry the rollout on the K8s happens
 * Monitoring - installed on the DO, here is my monitoring pods:
 
 ![my-monitoring](images/monit.png)
+
+# FREEBSD !!! and KDE
+
+So, I've used the same DigitalOcean, but unfortunately they put me a limit on the droplets creation, so we can create only one additional node, the next one is only after destroying. But I've put the logic to my bot that it will not execute simultaneously multiple creations.
+
+How does it works (very simple):
+
+* vm_create
+
+![vm_create](images/vm_create.jpg)
+
+* vm_destroy 
+
+![vm_destroy](images/vm_destroy.jpg)
+
+Unfortunately, I just could find the way to install old KDE on the FreeBSD, so the image from which VM is setting up already has KDE installed.
+I've done it via configuring FreeBSD with all of stuff inside the box and making a snapshot.
+
+
+
