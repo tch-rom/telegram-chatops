@@ -1,0 +1,21 @@
+name: VM creation
+
+on:
+  repository_dispatch:
+    types: [vm_create]
+  
+jobs:
+  create-freebsd-install-kde:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: DO login and doctl install
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+      
+      - name: Set up new VM
+        run: doctl compute droplet create --image freebsd-12-x64-zfs --size s-1vcpu-1gb --region fra1 rtkach-fbsd --ssh-keys ${{ secrets.DO_SSH_KEY_ID }}

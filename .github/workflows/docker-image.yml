@@ -1,7 +1,8 @@
-name: Docker Image CI
+name: Docker Image CD
 
 on:
   repository_dispatch:
+    types: [app_deployment]
 
 env:
   REGISTRY: registry.digitalocean.com/simple-dimple-reg

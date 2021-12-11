@@ -1,0 +1,21 @@
+name: VM destroyal
+
+on:
+  repository_dispatch:
+    types: [vm_destroy]
+  
+jobs:
+  destroy-freebsd:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: DO login and doctl install
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+      
+      - name: Destroy the VM
+        run: doctl compute droplet delete rtkach-fbsd -f
