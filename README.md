@@ -43,5 +43,5 @@ How does it works (very simple):
 Unfortunately, I just could find the way to install old KDE on the FreeBSD, so the image from which VM is setting up already has KDE installed.
 I've done it via configuring FreeBSD with all of stuff inside the box and making a snapshot.
 
-
+The same approach I've used for the showing versions and monit.
 

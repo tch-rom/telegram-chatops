@@ -1,8 +1,8 @@
-name: VM show version
+name: VM monit
 
 on:
   repository_dispatch:
-    types: [vm_show_version]
+    types: [vm_monit]
   
 jobs:
   create-freebsd-install-kde:
@@ -24,5 +24,5 @@ jobs:
         with:
           token: ${{ secrets.DO_TOKEN }}
       
-      - name: Show freebsd and KDE version
-        run: doctl compute ssh rtkach-fbsd --ssh-command "uname -a"
+      - name: Show uptime
+        run: doctl compute ssh rtkach-fbsd --ssh-command "uptime"
